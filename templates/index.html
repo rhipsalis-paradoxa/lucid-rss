@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul id="feed-list">
+{% for feed in feeds %}
+    <li class="feed-item">
+      <form method="post">
+        <button type="submit" name="delete" value="{{ feed['name'] }}">x</button>
+        <div class="feed-name">{{ feed['name'] }}</div>
+        <a href="{{ feed['url'] }}" class="feed-item-url">{{ feed['url'] }}</a>
+      </form>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

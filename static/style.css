@@ -1,0 +1,48 @@
+body {
+    font-family: sans-serif;
+}
+
+header {
+    /* background-color: lavender; */
+    border-bottom: solid 1px gray;
+}
+
+#logo {
+    font-weight: bold;
+    text-decoration: none;
+    padding: 1em;
+}
+
+#logo a:active, #logo a:hover, #logo a:link {
+    text-decoration: none;
+}
+
+#feed-list {
+    padding: 1em;
+}
+
+.feed-item {
+    list-style: none;
+    padding: 3px;
+    background-color: #eee;
+    padding-left: 1em;
+}
+
+.feed-item a {
+    padding-left: 1em;
+}
+
+.feed-item:nth-child(even) {
+    background-color: white;
+}
+
+.feed-name {
+    font-family: monospace;
+    width: 5em;
+    overflow: hidden;
+    display: inline;
+}
+
+.feed-item-url {
+    font-family: monospace;
+}
