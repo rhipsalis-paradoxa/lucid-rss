@@ -2,22 +2,7 @@
 
 <title>Lucid RSS</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-<header>
-  <nav id="searchbar">
-    <form method="post" id="search-form">
-      <p>
-        <span id="logo">
-          <a href="/">Lucid RSS</a>
-        </span>
-
-        <input name="URL" id="URL" placeholder="Enter a URL..." required>
-        <button type="submit" name="delete" value="go">Go!</button>
-      </p>
-    </form>
-  </nav>
-</header>
-
+{% block head %}{% endblock %}
 
 <section class="content">
 {% block content %}{% endblock %}

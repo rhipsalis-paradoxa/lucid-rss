@@ -33,4 +33,5 @@ def fetch_html(url):
 def pygmentize_from_url(url):
     html = fetch_html(url)
     highlighted = highlight(html, HtmlLexer(), HtmlFormatter())
+    
     return highlighted

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='pygments.css') }}">
+{% endblock %}
+
+{% block content %}
+<header>
+  <nav id="searchbar">
+    <form method="post" id="search-form">
+      <p>
+        <span id="logo">
+          <a href="/">Lucid RSS</a>
+        </span>
+      </p>
+    </form>
+  </nav>
+</header>
+
+
+<p>It's time to get creative!</p>
+
+<div class="code">
+    {{html | safe}}
+</div>
+{% endblock %}

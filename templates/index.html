@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
+<header>
+  <nav id="searchbar">
+    <form method="post" id="search-form">
+      <p>
+        <span id="logo">
+          <a href="/">Lucid RSS</a>
+        </span>
+
+        <input name="URL" id="URL" placeholder="Enter a URL..." required>
+        <button type="submit" name="delete" value="go">Go!</button>
+      </p>
+    </form>
+  </nav>
+</header>
+
+
 <ul id="feed-list">
 {% for feed in feeds %}
     <li class="feed-item">

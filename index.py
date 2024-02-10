@@ -46,9 +46,12 @@ def show_index():
     
     if request.method == 'POST':
         if 'URL' in request.form:
-            make_feed(request.form['URL'])
+            url = request.form['URL']
+            # make_feed(url)
+            return render_template('/create.html',
+                                   html=util.pygmentize_from_url(url))
         if 'delete' in request.form:
             delete_feed(request.form['delete'])
-        return redirect(url_for('index.show_index'))
+            return redirect(url_for('index.show_index'))
     else:
         return render_template('/index.html', feeds=feeds)

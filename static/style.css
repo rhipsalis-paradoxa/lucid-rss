@@ -13,8 +13,9 @@ header {
     padding: 1em;
 }
 
-#logo a:active, #logo a:hover, #logo a:link {
+#logo a, #logo a:active, #logo a:hover, #logo a:link {
     text-decoration: none;
+    color: blue;
 }
 
 #feed-list {
@@ -45,4 +46,11 @@ header {
 
 .feed-item-url {
     font-family: monospace;
+}
+
+.code {
+    height: 16em;
+    padding: 1em;
+    overflow: scroll;
+    border: 1px solid black;
 }

@@ -32,8 +32,9 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # register all blueprints
-    from . import index
+    from . import index, create
     app.register_blueprint(index.bp)
+    app.register_blueprint(create.bp)
     
     
     return app
