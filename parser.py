@@ -18,9 +18,15 @@ def xpaths_from_template(template):
         xpaths = []
         # traverse the template, saving xpath to any item marked with a $
         for element in root.iter():
-            path = tree.getpath(element)
+            path = '/' + tree.getpath(element)
+            # iterate over attributes and save xpath to any with a
+            # value matching $
+            for item in element.items():
+                if item[1] == '$':
+                    xpaths.append(path + '/' + f'/@{item[0]}')
+            # add xpath to tag if tag contents match $
             if element.text == '$':
-                xpaths.append('/' + path)
+                xpaths.append(path + '/text()')
         return xpaths
 
 
@@ -36,7 +42,7 @@ def extract_articles(feedname, xpaths):
         # Extract the text matching each of the provided xpaths.
         sections = []
         for x in xpaths:
-            sections.append([e.text for e in root.xpath(x)])
+            sections.append(root.xpath(x))
         # Zip matches together into groups; since the xpaths specify
         # different parts of an article overview, associating the matches
         # together by index should put parts of a corresponding article in

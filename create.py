@@ -32,12 +32,13 @@ def preview(feed):
     xpaths   = parser.xpaths_from_template(in_template)
     if xpaths is None:
         return f"Error: webpage is not valid HTML."
-        
+
     articles = parser.extract_articles(feed, xpaths)
     if articles is None:
         return f"Error: input template is not valid HTML."
     
     s = ''
+    print(articles)
     for a in articles:
         f = parser.fmt_article(out_template, a)
         s += "\n" + f
