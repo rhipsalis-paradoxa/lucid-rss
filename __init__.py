@@ -8,6 +8,8 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'lucid.sqlite'),
+        RSS=os.path.join(app.instance_path, 'rss'),
+        TMP=os.path.join(app.instance_path, 'tmp')
     )
 
     # read config parameters from config.py
@@ -19,6 +21,8 @@ def create_app(test_config=None):
     # make a folder for instance-related files if necessary.
     try:
         os.makedirs(app.instance_path)
+        os.makedirs(app.config['RSS'])
+        os.makedirs(app.config['TMP'])
     except OSError:
         pass
 

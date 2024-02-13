@@ -50,7 +50,14 @@ header {
 
 .code {
     height: 16em;
-    padding: 1em;
+    padding: 0.5em;
     overflow: scroll;
     border: 1px solid black;
+}
+
+.flash {
+    background-color: lemonchiffon;
+    border: 1px dashed red;
+    padding: 0.5em;
+    margin: 0.5em;
 }

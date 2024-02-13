@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block content %}
+{% block banner %}
 <header>
   <nav id="searchbar">
     <form method="post" id="search-form">
@@ -16,8 +16,10 @@
     </form>
   </nav>
 </header>
+{% endblock %}
 
 
+{% block content %}
 <ul id="feed-list">
 {% for feed in feeds %}
     <li class="feed-item">

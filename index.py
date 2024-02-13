@@ -7,6 +7,9 @@ from flask import (
 import lucid.util as util
 from   lucid.db import get_db
 
+import validators
+
+
 
 bp = Blueprint('index', __name__, url_prefix='/')
 
@@ -15,13 +18,15 @@ bp = Blueprint('index', __name__, url_prefix='/')
 def make_feed(url):
     db = get_db()
     error = None
+    name = util.new_feed_name()
 
-    if not url:
-        error = "Missing URL."
+    if not url or not validators.url(url):
+        error = f"Missing or invalid URL: {url}."
+    elif not util.save_page(name, url):
+        error = f"Error saving page at URL: {url}."
         
     if error is None:
         try:
-            name = util.new_feed_name()
             db.execute("INSERT INTO feed (name, url) VALUES (?, ?)",
                        (name, url))
             db.commit()
@@ -30,6 +35,9 @@ def make_feed(url):
 
     if error is not None:
         flash(error)
+        return None
+
+    return name
     
 
 def delete_feed(feed):
@@ -46,12 +54,14 @@ def show_index():
     
     if request.method == 'POST':
         if 'URL' in request.form:
-            url = request.form['URL']
-            # make_feed(url)
-            return render_template('/create.html',
-                                   html=util.pygmentize_from_url(url))
+            url  = request.form['URL']
+            name = make_feed(url)
+            if name is not None:
+                return redirect(url_for('create.create', feed=name))
+            else:
+                return redirect(url_for('index.show_index'))
         if 'delete' in request.form:
             delete_feed(request.form['delete'])
             return redirect(url_for('index.show_index'))
-    else:
-        return render_template('/index.html', feeds=feeds)
+
+    return render_template('/index.html', feeds=feeds)

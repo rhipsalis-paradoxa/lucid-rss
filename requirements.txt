@@ -1,3 +1,6 @@
 Flask
 openai-async
 pygments
+lxml
+beautifulsoup4
+validators
