@@ -7,6 +7,7 @@ from flask import (
 import lucid.util as util
 import lucid.parser as parser
 from   lucid.db import get_db
+import lucid.llm as llm
 
 
 
@@ -43,3 +44,21 @@ def preview(feed):
         f = parser.fmt_article(out_template, a)
         s += "\n" + f
     return s
+
+
+@bp.route('/create/<feed>/hint', methods=('POST',))
+def suggest(feed):
+    if not util.feed_exists(feed):
+        return f"The feed with ID {feed} was not found.", 404
+
+    in_template  = request.form['input-template']
+    out_template = request.form['output-template']
+
+    in_hint  = llm.html_hint(in_template)
+    out_hint = llm.html_hint(out_template)
+
+    print(in_hint)
+    print(out_hint)
+    
+    return {'in_hint': in_hint, 'out_hint': out_hint}
+     

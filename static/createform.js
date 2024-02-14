@@ -10,3 +10,16 @@ async function loadPreview() {
 
     console.log(await response.text());
 }
+
+
+async function getHint() {
+    const form = document.querySelector('#template');
+    const formData = new FormData(form);
+
+    const response = await fetch(window.location.href + "/hint", {
+        method: "POST",
+        body: formData,
+    });
+
+    console.log(await response.text());
+}

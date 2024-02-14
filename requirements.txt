@@ -1,6 +1,7 @@
 Flask
-openai-async
 pygments
 lxml
 beautifulsoup4
 validators
+pydantic==1.10.8
+openai
